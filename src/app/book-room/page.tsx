@@ -1,9 +1,103 @@
-import React from 'react'
+"use client"
 
-function page() {
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+
+function BookRoomPage() {
+  const [roomNumber, setRoomNumber] = useState('');
+  const [category, setCategory] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [customerName, setCustomerName] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log({
+      roomNumber,
+      category,
+      startDate,
+      endDate,
+      customerName,
+      customerEmail,
+    });
+  };
+
   return (
-    <div>This is the book room page</div>
-  )
+    <div className="max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Book a Room</h1>
+      <form onSubmit={handleBookingSubmit}>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Room Number</label>
+          <Input
+            type="number"
+            value={roomNumber}
+            onChange={(e) => setRoomNumber(e.target.value)}
+            placeholder="Enter room number"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Category</label>
+          <Select value={category} onValueChange={(value) => setCategory(value)}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Categories</SelectLabel>
+                <SelectItem value="single">Single Room</SelectItem>
+                <SelectItem value="double">Double Room</SelectItem>
+                <SelectItem value="suite">Suite</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Start Date</label>
+          <Input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">End Date</label>
+          <Input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Customer Name</label>
+          <Input
+            type="text"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            placeholder="Enter customer name"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Customer Email</label>
+          <Input
+            type="email"
+            value={customerEmail}
+            onChange={(e) => setCustomerEmail(e.target.value)}
+            placeholder="Enter customer email"
+            required
+          />
+        </div>
+        <Button type="submit">Book Room</Button>
+      </form>
+    </div>
+  );
 }
 
-export default page
+export default BookRoomPage;
