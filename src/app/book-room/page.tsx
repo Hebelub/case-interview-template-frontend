@@ -7,11 +7,10 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 
 function BookRoomPage() {
+
   const [category, setCategory] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [customerName, setCustomerName] = useState('');
-  const [customerEmail, setCustomerEmail] = useState('');
 
   const handleBookingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,26 +62,12 @@ function BookRoomPage() {
             required
           />
         </div>
+
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Customer Name</label>
-          <Input
-            type="text"
-            value={customerName}
-            onChange={(e) => setCustomerName(e.target.value)}
-            placeholder="Enter customer name"
-            required
-          />
+            It will automatically find a room for you based on the category and time period you selected.
         </div>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Customer Email</label>
-          <Input
-            type="email"
-            value={customerEmail}
-            onChange={(e) => setCustomerEmail(e.target.value)}
-            placeholder="Enter customer email"
-            required
-          />
-        </div>
+
+        
         <Button type="submit">Book Room</Button>
       </form>
     </div>
