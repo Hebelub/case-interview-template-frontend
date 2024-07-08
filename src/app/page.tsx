@@ -1,15 +1,15 @@
 "use client"
 
 import { useEffect, useState } from 'react';
-import { getProducts, Product } from '@/app/api/productService';
+// import { getProducts, Product } from '@/app/api/productService';
 
 export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
+  // const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getProducts();
-      setProducts(data);
+      // const data = await getProducts();
+      // setProducts(data);
     }
 
     fetchData();
@@ -17,8 +17,8 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Products</h1>
-      <ul>
+      <h1>???</h1>
+      {/* <ul>
         {products.map((product, index) => (
           <li key={index}>
             {product.name} - {product.price}
@@ -30,7 +30,7 @@ export default function Home() {
 
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
