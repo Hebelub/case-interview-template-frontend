@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Booking, createBooking } from '@/app/api/bookingService';
+import { toast } from '@/components/ui/use-toast';
 
 
 function BookRoomPage() {
@@ -12,14 +14,32 @@ function BookRoomPage() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({
-      category,
-      startDate,
-      endDate,
-    });
+    
+    try {
+      const newBooking: Partial<Booking> = {
+        category,
+        startDate,
+        endDate,
+      };
+
+      const bookingResponse = await createBooking(newBooking);
+      if (!bookingResponse) {
+        throw new Error('Booking failed');
+      }
+
+      toast({
+        title: "Booking Successful",
+        description: "Your room has been booked successfully.",
+      });
+    } catch (err) {
+      const error = err as Error;
+      toast({
+        title: "Booking Failed",
+        description: error.message,
+      });
+    }
   };
 
   return (
@@ -37,7 +57,6 @@ function BookRoomPage() {
                 <SelectLabel>Categories</SelectLabel>
                 <SelectItem value="single">Single Room</SelectItem>
                 <SelectItem value="double">Double Room</SelectItem>
-                <SelectItem value="suite">Suite</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>

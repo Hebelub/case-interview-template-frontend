@@ -10,6 +10,7 @@ export interface Booking {
   userId: number;
   user: User;
   startDate: string;
+  category: string;
   endDate: string;
   status: string; // Pending, Confirmed, Cancelled, Completed, CheckedIn, CheckedOut
 }
@@ -63,4 +64,3 @@ export async function createBooking(booking: Partial<Booking>): Promise<Booking 
       return null;
     }
   }
-  
