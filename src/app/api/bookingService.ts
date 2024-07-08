@@ -41,3 +41,26 @@ export async function getBookingById(id: number): Promise<Booking | null> {
     return null;
   }
 }
+
+export async function createBooking(booking: Partial<Booking>): Promise<Booking | null> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/Bookings`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(booking),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data: Booking = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Failed to create booking:', error);
+      return null;
+    }
+  }
+  
