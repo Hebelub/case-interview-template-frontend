@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 
 function BookRoomPage() {
-  const [roomNumber, setRoomNumber] = useState('');
   const [category, setCategory] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -18,7 +17,6 @@ function BookRoomPage() {
     e.preventDefault();
     // Handle form submission logic here
     console.log({
-      roomNumber,
       category,
       startDate,
       endDate,
@@ -31,15 +29,6 @@ function BookRoomPage() {
     <div className="max-w-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Book a Room</h1>
       <form onSubmit={handleBookingSubmit}>
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Room Number</label>
-          <Input
-            type="number"
-            value={roomNumber}
-            onChange={(e) => setRoomNumber(e.target.value)}
-            placeholder="Enter room number"
-          />
-        </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">Category</label>
           <Select value={category} onValueChange={(value) => setCategory(value)}>
