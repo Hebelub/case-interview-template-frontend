@@ -19,8 +19,6 @@ function BookRoomPage() {
       category,
       startDate,
       endDate,
-      customerName,
-      customerEmail,
     });
   };
 
