@@ -5,9 +5,7 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export interface Booking {
   id: number;
-  roomId: number;
   room: Room;
-  userId: number;
   user: User;
   startDate: string;
   category: string;
