@@ -1,15 +1,20 @@
-import React from 'react';
-import RoomCard from '@/components/RoomCard';
+"use client"
 
-// This should be fetched from the backend
-const rooms = [
-  { roomNumber: 247, category: {id: 1, name: "Single room"} },
-  { roomNumber: 7, category: {id: 2, name: "Double room"} },
-  { roomNumber: 89, category: {id: 2, name: "Double room"} },
-  { roomNumber: 42, category: {id: 2, name: "Double room"} },
-];
+import React, { useEffect, useState } from 'react';
+import RoomCard from '@/components/RoomCard';
+import { getRooms, Room } from '@/app/api/roomService'
 
 function Rooms() {
+
+  const [rooms, setRooms] = useState<Room[]>([]);
+
+  // Fetch rooms from the API
+  useEffect(() => {
+    getRooms().then((data) => {
+      setRooms(data);
+    });
+  }, []);
+
   return (
     <div className="h-full">
       {rooms.map((room, index) => (
